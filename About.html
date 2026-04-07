@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me | Shashank Sekhar</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #0d0d0d;
+            --accent-purple: #8a2be2;
+            --text-main: #ffffff;
+            --text-dim: #888;
+            --transition: all 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* --- BACKGROUND LAYER (Sticky Title) --- */
+        .hero-background {
+            position: fixed;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            text-align: center;
+            width: 100%;
+            pointer-events: none;
+        }
+
+        .name-script {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(4rem, 15vw, 12rem);
+            margin: 0;
+            background: linear-gradient(to bottom, #fff, #333);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0.8;
+        }
+
+        /* --- FOREGROUND LAYER (The Content Curtain) --- */
+        .about-curtain {
+            position: relative;
+            z-index: 10;
+            background-color: var(--bg-color);
+            margin-top: 75vh; /* This creates the scroll reveal */
+            padding: 100px 10%;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            box-shadow: 0 -50px 100px rgba(0,0,0,0.9);
+        }
+
+        .about-container {
+            max-width: 1200px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr; /* Split Layout */
+            gap: 80px;
+            align-items: start;
+        }
+
+        /* --- LEFT SIDE: THE IMAGE --- */
+        .image-box {
+            position: sticky;
+            top: 100px;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+            filter: grayscale(100%) contrast(110%);
+            transition: var(--transition);
+            opacity: 0.8;
+        }
+
+        .profile-img:hover {
+            filter: grayscale(0%) contrast(100%);
+            opacity: 1;
+        }
+
+        /* --- RIGHT SIDE: THE STORY --- */
+        .text-box {
+            padding-bottom: 100px;
+        }
+
+        .about-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: var(--accent-purple);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .about-headline {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            line-height: 1.1;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .about-headline span {
+            color: var(--accent-purple);
+        }
+
+        .about-p {
+            font-size: 1.1rem;
+            color: var(--text-dim);
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .discipline-quote {
+            border-left: 2px solid var(--accent-purple);
+            padding-left: 30px;
+            margin: 50px 0;
+            font-style: italic;
+            font-size: 1.2rem;
+            color: #eee;
+        }
+
+        /* --- BACK TO HOME LINK --- */
+        .back-home {
+            margin-top: 50px;
+            display: inline-block;
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--accent-purple);
+            padding-bottom: 5px;
+            transition: 0.3s;
+        }
+
+        .back-home:hover {
+            letter-spacing: 4px;
+            color: var(--accent-purple);
+        }
+
+        /* --- MOBILE RESPONSIVE --- */
+        @media (max-width: 900px) {
+            .about-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .image-box {
+                position: relative;
+                top: 0;
+            }
+            .about-curtain {
+                margin-top: 70vh;
+                padding: 60px 5%;
+            }
+        }
+
+        /* --- SCROLL INDICATOR STYLES --- */
+.scroll-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px; /* Spacing between the bar and 'SCROLL' text */
+    margin-top: -30px; /* Pulls it closer to the large text, adjust as needed */
+    pointer-events: auto; /* Makes it interactive if you want it to scroll on click */
+}
+
+/* The vertical grey bar */
+.scroll-bar {
+    width: 3px;
+    height: 40px;
+    background-color: #333; /* Dark grey base */
+    position: relative;
+    border-radius: 1px;
+    overflow: hidden;
+}
+
+/* The green highlight that animates */
+.scroll-bar .highlight {
+    position: absolute;
+    width: 100%;
+    height: 15px; /* Size of the active highlight */
+    background-color: #ccff00; /* Neon yellow/green from your reference */
+    top: -15px; /* Starts hidden above the bar */
+    left: 0;
+    
+    /* Connect the animation name defined below */
+    animation: scrollSlide 2.5s cubic-bezier(0.77, 0, 0.175, 1) infinite;
+}
+
+/* The 'SCROLL' text below the bar */
+.scroll-text {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    letter-spacing: 3px;
+    margin: 0;
+}
+
+/* --- THE PULSING/SLIDING ANIMATION KEYFRAMES --- */
+@keyframes scrollSlide {
+    0% {
+        top: -15px; /* Hidden top */
+        opacity: 0;
+    }
+    30% {
+        top: 12.5px; /* Hits middle and goes full neon */
+        height: 15px;
+        opacity: 1;
+    }
+    60% {
+        top: 12.5px; /* Stays centered and 'pumps' or brightens */
+        height: 18px; /* Slightly expands for emphasis */
+        opacity: 1;
+    }
+    90% {
+        top: 40px; /* Heads off the bottom and fades out */
+        height: 10px;
+        opacity: 0;
+    }
+    100% {
+        top: 40px;
+        opacity: 0;
+    }
+}
+    </style>
+</head>
+<body>
+
+    <div class="hero-background">
+        <h1 class="name-script">About</h1>
+        <div class="scroll-indicator">
+        <div class="scroll-bar">
+            <span class="highlight"></span>
+        </div>
+        <p class="scroll-text">SCROLL</p>
+    </div>
+</div>
+    </div>
+
+    <main class="about-curtain">
+        <div class="about-container">
+            
+            <div class="image-box">
+                <img src="Shashank.jpeg" alt="Shashank Sekhar" class="profile-img">
+            </div>
+
+            <div class="text-box">
+                <span class="about-label">The Person</span>
+                <h2 class="about-headline">Bridging AI Logic with <span>Human-Centered</span> Design.</h2>
+                
+                <p class="about-p">
+                    I am a designer and B.Tech student who specializes in the intersection of technical architecture and visual simplicity. My background in Java and AI analytics allows me to understand the "how" behind the products I design.
+                </p>
+
+                <p class="about-p">
+                    Whether I am building brand designs or crafting high-fidelity UI prototypes, my goal is to strip away unnecessary noise until only the essential user experience remains.
+                </p>
+
+                <div class="discipline-quote">
+                    "Design is the result of controlled discipline."
+                </div>
+
+                <p class="about-p">
+                    My process is heavily influenced by the philosophy of discipline. I draw inspiration from a few set of people I follow and applying that same level of "controlled aggression" to solve complex design problems.
+                </p>
+
+                <a href="index.html" class="back-home">Return to Portfolio</a>
+            </div>
+
+        </div>
+    </main>
+
+</body>
+</html>

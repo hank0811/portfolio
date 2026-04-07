@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shashank Sekhar | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+    :root {
+        --bg-color: #0d0d0d;
+        --accent-purple: #8a2be2;
+        --text-main: #ffffff;
+        --text-dim: #888;
+    }
+
+    body {
+        background-color: var(--bg-color);
+        color: var(--text-main);
+        font-family: 'Inter', sans-serif;
+        margin: 0;
+        padding: 0;
+        line-height: 1.2;
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Centers all direct children */
+    }
+    .contact-section {
+    padding: 100px 20px;
+    text-align: center;
+    background-color: #0d0d0d;
+    width: 100%;
+    position: relative;
+    z-index: 15; /* Ensures it sits on top of the sticky background */
+}
+
+.contact-title {
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 700;
+    margin-bottom: 10px;
+    letter-spacing: -1px;
+}
+
+.contact-sub {
+    color: var(--text-dim);
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.social-icon {
+    font-size: 2.5rem; /* Large enough to be a focal point */
+    color: #444; /* Dim by default */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-decoration: none;
+}
+
+.social-icon:hover {
+    color: var(--accent-purple);
+    transform: translateY(-10px) scale(1.1); /* The signature "Designer" lift */
+}
+
+/* Specific hover colors if you want them to pop */
+.fa-envelope:hover { color: #ea4335; } /* Gmail Red */
+.fa-instagram:hover { color: #e1306c; } /* Insta Pink */
+.fa-behance:hover { color: #0057ff; }   /* Behance Blue */
+
+    /* Navigation */
+    nav {
+    position: fixed;   /* This is the magic: it stays on screen during scroll */
+    top: 40px;         /* Distance from the top of the window */
+    left: 50px;        /* Distance from the left of the window */
+    z-index: 9999;     /* A huge number so it sits above EVERYTHING else */
+    padding: 0;
+}
+    .menu-icon {
+    width: 35px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+    
+   .menu-icon span {
+    display: block;
+    height: 2px;
+    width: 100%;
+    background-color: #fff; /* White bars to match your dark theme */
+    transition: 0.3s ease;
+}
+
+/* Optional: Turns the bars purple when you hover */
+    .menu-icon:hover span {
+    background-color: var(--accent-purple);
+}
+        /* This container stays fixed as you scroll */
+    .hero {
+        position: relative;
+        top: 15vh; /* Adjust this to position the name vertically */
+        z-index: 1; /* Lower layer */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        pointer-events: none; /* Allows you to click through the text to the menu */
+    }
+
+    .name {
+        font-family: 'Great Vibes', cursive; 
+        font-size: clamp(4rem, 15vw, 10rem); 
+        font-weight: 500;
+        margin: 80px 0 10px 0;
+        text-align: center;
+        letter-spacing: -2px;
+        background: linear-gradient(to bottom, #fff, #888);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin: 0;
+        pointer-events: auto; /* Makes only the name clickable if needed */
+}
+    /* 2. THE BIG TAGLINE (Centered) */
+    .tagline {
+        font-size: clamp(1.2rem, 3.5vw, 2rem); 
+        font-weight: 300;
+        color: #eee;
+        text-align: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        line-height: 1.1;
+    }
+
+    .tagline span {
+        color: var(--accent-purple);
+        font-weight: 500;
+    }
+
+    /* 3. THE QUOTE (Centered) */
+    .quote {
+        font-size: 1rem;
+        color: var(--text-dim);
+        margin: 50px auto;
+        text-align: center;
+        max-width: 600px;
+        font-style: italic;
+        position: relative;
+    }
+    
+    /* Small decorative line under quote */
+    .quote::after {
+        content: '';
+        display: block;
+        width: 50px;
+        height: 2px;
+        background: var(--accent-purple);
+        margin: 20px auto 0;
+    }
+
+    /* 4. SKILLS SECTION (Centered) */
+    .skills-container {
+        margin: 0 auto 100px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        max-width: 800px;
+    }
+
+    .skill-tag {
+        display: inline-block;
+        padding: 10px 25px;
+        margin: 5px;
+        border: 1px solid #333;
+        border-radius: 50px;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: 0.3s;
+    }
+    
+    .skill-tag:hover {
+        border-color: var(--accent-purple);
+        background: rgba(138, 43, 226, 0.1);
+        transform: translateY(-3px);
+    }
+.content-wrapper {
+    width: 100%;
+        display: flex;
+        justify-content: center;    
+        position: relative;
+        z-index: 10; /* Ensures it is on top of the name */
+        background-color: #0d0d0d; /* MUST be your exact body background color */
+        margin-top: 100vh; /* This creates the initial 'blank' space to see the name */
+        box-shadow: 0 -50px 100px rgba(0,0,0,0.9); /* Adds a shadow to 'cover' the name cleanly */
+    }
+    /* 5. THE PROJECT GRID (Balanced) */
+    /* 1. Fix the name to the background */
+.hero-background {
+    position: fixed;
+    /* Increase this number to move the text down. 
+       Try 60% or 65% to pull it lower into the frame. */
+    top: 55vh; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    text-align: center;
+    width: 100%;
+    pointer-events: none; /* Crucial so you can still click the menu above it */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 2. Create the solid 'Curtain' that slides up */
+/* THE CURTAIN: This is the solid black "cover" */
+.project-curtain {
+    position: relative;
+    z-index: 10;
+    background-color: #0d0d0d; /* Must be solid to hide the name */
+    margin-top: 100vh; /* Space to see the name first */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+    padding-bottom: 100px;
+}
+
+/* THE GRID: This forces the 2-column layout */
+.projects-grid {
+    display: grid;
+    /* This is the key line: '1fr 1fr' forces two columns side-by-side */
+    grid-template-columns: 1fr 1fr; 
+    gap: 50px;
+    width: 70%;
+    max-width: 1400px;
+}
+
+/* MOBILE FIX: On small screens, we should go back to 1 column */
+@media (max-width: 900px) {
+    .about-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .image-box {
+        position: relative;
+        top: 0;
+    }
+
+    .about-curtain {
+        margin-top: 65vh; /* slightly reduced for small screens */
+        padding: 60px 6%;
+    }
+}
+    .project-card {
+    width: 100%; /* Important: Let the grid decide the width */
+    height: 500px;
+    background: #0d0813;
+    border-radius: 40px;
+    padding: 0; 
+    overflow: hidden;
+    transition: transform 0.2s ease;
+    position: relative;
+}
+
+    .project-card:hover {
+        transform: scale(1.02); /* Visual feedback that the whole card is a button */
+    cursor: pointer;
+        box-shadow: 0 20px 40px #46077380;
+        border-color: #444;
+    }
+
+    .project-info {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 40px;
+        background: linear-gradient(to top, rgba(0,0,0,1), transparent);
+        text-align: center; /* Centering text inside cards too */
+    }
+
+    .project-title {
+        font-size: 2.2rem;
+        font-weight: 700;
+        margin: 0;
+    }
+
+    .project-desc {
+        font-size: 1rem;
+        color: var(--text-dim);
+        margin-top: 10px;
+    }
+    /* Sidebar Background */
+    .sidebar {
+        height: 100%;
+        width: 0; /* Starts at 0 */
+        position: fixed;
+        z-index: 999;
+        top: 0;
+        left: 0;
+        background-color: #111; /* Solid dark background */
+        border-right: 1px solid #222; /* Subtle border for definition */
+        overflow-x: hidden;
+        transition: 0.5s cubic-bezier(0.77,0,0.175,1); /* Smooth "luxury" slide */
+        padding-top: 60px;
+    }
+
+    /* Sidebar Content Alignment */
+    .sidebar-content {
+        display: flex;
+        flex-direction: column;
+        padding-left: 40px;
+        margin-top: 80px;
+    }
+
+    /* Sidebar Links */
+    .sidebar a {
+        padding: 10px 0;
+        text-decoration: none;
+        font-size: 2.5rem; /* Large, but fits in a sidebar */
+        font-weight: 700;
+        color: #555;
+        display: block;
+        transition: 0.3s;
+        letter-spacing: -1px;
+    }   
+
+    /* Hover Effect */
+    .sidebar a:hover {
+        color: var(--accent-purple);
+        padding-left: 10px; /* Slight nudge on hover */
+    }
+
+    /* Close Button (X) */
+    .sidebar .closebtn {
+        position: absolute;
+        top: 20px;
+        right: 25px;
+        font-size: 36px;
+        color: #fff;
+    }
+
+    /* Ensuring the menu icon stays visible/clickable */
+    .menu-icon {
+        z-index: 1000;
+        position: relative;
+    }
+    .project-link {
+    display: block;    /* This makes the link behave like a container/box */
+    width: 100%;       /* Ensures it covers the full width of the card */
+    height: 100%;      /* Ensures it covers the full height */
+    text-decoration: none; 
+    color: inherit;    /* Prevents the text from turning blue */
+}
+
+    @media (max-width: 600px) {
+        .projects-grid {
+            grid-template-columns: 1fr;
+        }
+        .project-card {
+            height: 450px;
+        }
+    }
+
+    .scroll-bar {
+    width: 2px;
+    height: 35px;
+    background-color: #525050;
+    position: relative;
+    overflow: hidden;
+}
+
+.scroll-bar .highlight {
+    position: absolute;
+    width: 100%;
+    height: 12px;
+    background-color: #f7ff03; /* Neon highlight */
+    top: -15px;
+    animation: scrollSlide 2.5s cubic-bezier(0.77, 0, 0.175, 1) infinite;
+}
+
+.scroll-text {
+    font-size: 0.65rem;
+    color: #9c9898;
+    letter-spacing: 4px;
+    margin: 0;
+    text-transform: uppercase;
+}
+.home-scroll-container {
+    position: absolute;
+    bottom: 20px; /* Anchors it to the bottom of the screen */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    z-index: 20;
+}
+
+/* Re-using your existing animation */
+@keyframes scrollSlide {
+    0% { top: -15px; opacity: 0; }
+    30% { top: 10px; opacity: 1; }
+    60% { top: 10px; opacity: 1; height: 15px; }
+    90% { top: 35px; opacity: 0; }
+    100% { top: 35px; opacity: 0; }
+}
+@media (max-width: 1024px) {
+    .about-container {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+
+    .image-box {
+        position: relative;
+        top: 0;
+    }
+}
+@media (max-width: 480px) {
+    .about-curtain {
+        margin-top: 60vh;
+        padding: 40px 5%;
+    }
+
+    .about-headline {
+        font-size: 1.8rem;
+    }
+
+    .about-p {
+        font-size: 0.95rem;
+    }
+
+    .discipline-quote {
+        padding-left: 20px;
+        font-size: 1rem;
+    }
+
+    .scroll-indicator {
+        margin-top: 10px;
+    }
+}
+.project-image-placeholder {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;   /* 🔥 THIS is the fix */
+    display: block;
+}
+</style>
+</head>
+<body>
+    <div id="navOverlay" class="sidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <div class="sidebar-content">
+        <a href="Home.html" onclick="closeNav()">Home</a>
+        <a href="Resume.html" target="_blank">Resume</a>
+        <a href="About.html">About Me</a>
+    </div>
+</div>
+</div>
+
+<nav>
+    <div class="menu-icon" onclick="openNav()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</nav>
+    <div class="hero-background">
+        <h1 class="name">Shashank Sekhar</h1>
+        <p class="tagline">A <span>UI/UX Designer</span> who can easily connect with people and their ideas</p>
+        <p class="quote">"Design isn't just what it looks like and feels like. Design is how it works"<br>-Steve Jobs</p>
+        <div class="skills-container">
+            <div class="skill-tag">UI/UX Design</div>
+            <div class="skill-tag">Branding</div>
+            <div class="skill-tag">Visual Identity</div>
+            <div class="skill-tag">Product Strategy</div>
+            <div class="skill-tag">Prototyping</div>
+        </div>
+        <div class="home-scroll-container">
+            <div class="scroll-bar">
+                <span class="highlight"></span>
+            </div>
+            <p class="scroll-text">SCROLL</p>
+        </div>
+    </div>
+    <div class="project-curtain">
+    <main class="projects-grid">
+
+        <div class="project-card">
+            <a href="Frabe.html" class="project-link">
+            <img src="Frabe.png" alt="Frabe" class="project-image-placeholder" >
+            <div class="project-info">
+                <h3 class="project-title">Frabe</h3>
+                <p class="project-desc">Women's safety analytics application design</p>
+            </div>
+            </a>
+        </div>
+
+        <div class="project-card">
+            <a href="QLess.html" class="project-link">
+            <img src="Qless.png" alt="Qless" class="project-image-placeholder">
+            <div class="project-info">
+                <h3 class="project-title">Qless</h3>
+                <p class="project-desc">Quick food pickup application design</p>
+            </div>
+            </a>
+        </div>
+
+        <div class="project-card">
+            <a href="Gusto.html" class="project-link">
+            <img src="Gusto.png" alt="Gusto" class="project-image-placeholder">
+            <div class="project-info">
+                <h3 class="project-title">Gusto</h3>
+                <p class="project-desc">An Italian based pastries shop branding</p>
+            </div>
+            </a>
+        </div>
+    </main>
+    </div>
+    <section class="contact-section">
+    <h2 class="contact-title">Let's Connect</h2>
+    <p class="contact-sub">Available for freelance and full-time opportunities.</p>
+    
+    <div class="social-links">
+        <a href="mailto:vsshashank08@gmail.com" class="social-icon" title="Email Me">
+            <i class="fa-regular fa-envelope"></i>
+        </a>
+        
+        <a href="https://www.instagram.com/shas_hank.008/" target="_blank" class="social-icon" title="Instagram">
+            <i class="fa-brands fa-instagram"></i>
+        </a>
+        
+        <a href="https://www.behance.net/shashanksekhar2" target="_blank" class="social-icon" title="Behance">
+            <i class="fa-brands fa-behance"></i>
+        </a>
+    </div>
+</section>
+    <footer>
+        &copy; Shashank Sekhar | 2026
+    </footer>
+    <script>
+function openNav() {
+    // This sets how far the menu comes out. 350px is a sweet spot.
+    document.getElementById("navOverlay").style.width = "350px";
+}
+
+function closeNav() {
+    document.getElementById("navOverlay").style.width = "0";
+}
+
+</script>
+
+</body>
+</html>

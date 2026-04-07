@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gusto | Gallery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg: #0d0d0d; --accent: #8a2be2; }
+        body { background: var(--bg); margin: 0; padding: 0; overflow-x: hidden; }
+
+        /* STICKY BACKGROUND TITLE */
+        .hero-bg {
+    position: fixed;
+    top: 50%; /* Centered vertically */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    width: 100%;
+    
+    /* Use Flexbox to stack everything vertically with zero overlap */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+        .hero-bg h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(5rem, 15vw, 12rem);
+            margin: 0;
+            background: linear-gradient(to bottom, #fff, #222);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0.5;
+        }
+
+        .project-specs {
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+            margin-top: 20px; /* Precise gap below the 'Gusto' script */
+            margin-bottom: 60px; /* Precise gap above the scroll indicator */
+        }
+        .spec-col {
+    display: flex;
+    flex-direction: column; /* This puts the value below the label */
+    align-items: center;    /* Keeps everything centered */
+    gap: 8px;               /* Space between label and value */
+}
+
+.label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: #636161;            /* The dimmed title color */
+    margin: 0;
+}
+
+.value {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #ffffff;            /* The bright white content color */
+    font-weight: 700;
+    margin: 0;
+}
+
+/* Mobile: Stack the columns vertically so they don't overlap */
+@media (max-width: 768px) {
+    .project-specs {
+        flex-direction: column;
+        gap: 30px;
+    }
+}
+
+.project-specs p {
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #444; /* Dim label */
+    margin: 0;
+}
+
+.project-specs span {
+    color: #fff; /* Bright value */
+    font-weight: 700;
+    margin-left: 8px;
+}
+        /* THE IMAGE CURTAIN */
+        .gallery-curtain {
+            position: relative;
+            z-index: 10;
+            background: var(--bg);
+            margin-top: 100vh;
+            padding: 0 0 10vh 0; /* Removed side padding for a more immersive feel */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 -100px 150px rgba(0,0,0,1);
+        }
+
+        .gallery-wrapper {
+            width: 100%;
+            max-width: 1200px; /* Limits the width so it doesn't get too tall on huge monitors */
+            display: flex;
+            flex-direction: column;
+            gap: 40px; /* Space between each of the 23 images */
+            padding: 50px 20px;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 4px;
+            /* Added a subtle glow to separate images from the pure black BG */
+            box-shadow: 0 20px 80px rgba(0,0,0,0.6); 
+        }
+
+        /* NAVIGATION AT THE END */
+        .back-nav {
+            margin: 100px 0;
+            text-align: center;
+        }
+        .back-nav a {
+            color: #555;
+            text-decoration: none;
+            letter-spacing: 5px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            border-bottom: 1px solid transparent;
+            transition: 0.4s;
+            padding-bottom: 5px;
+        }
+        .back-nav a:hover { 
+            color: var(--accent); 
+            border-color: var(--accent);
+            letter-spacing: 7px;
+        }
+
+        /* Responsive tweak for smaller screens */
+        @media (max-width: 768px) {
+            .gallery-wrapper { gap: 20px; padding: 20px 10px; }
+            .hero-bg h1 { font-size: 8rem; }
+        }
+        .scroll-indicator {
+    margin: 0; /* Let the parent flexbox handle the spacing */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Responsive: Stack specs on mobile so they don't crush together */
+@media (max-width: 600px) {
+    .project-specs {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+}
+
+/* The vertical grey bar */
+.scroll-bar {
+    width: 3px;
+    height: 40px;
+    background-color: #333; /* Dark grey base */
+    position: relative;
+    border-radius: 1px;
+    overflow: hidden;
+}
+
+/* The green highlight that animates */
+.scroll-bar .highlight {
+    position: absolute;
+    width: 100%;
+    height: 15px; /* Size of the active highlight */
+    background-color: #ccff00; /* Neon yellow/green from your reference */
+    top: -15px; /* Starts hidden above the bar */
+    left: 0;
+    
+    /* Connect the animation name defined below */
+    animation: scrollSlide 2.5s cubic-bezier(0.77, 0, 0.175, 1) infinite;
+}
+
+/* The 'SCROLL' text below the bar */
+.scroll-text {
+    font-size: 0.75rem;
+    color: #fff;
+    letter-spacing: 3px;
+    margin: 0;
+}
+.name-script {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(5rem, 15vw, 12rem);
+    line-height: 1.5;
+    padding: 0.2em 0.5em;
+    margin: 0; /* Remove default margins that cause weird spacing */
+    background: linear-gradient(to bottom, #fff, #222);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    opacity: 0.5;
+    display: block;
+}
+
+/* --- THE PULSING/SLIDING ANIMATION KEYFRAMES --- */
+@keyframes scrollSlide {
+    0% {
+        top: -15px; /* Hidden top */
+        opacity: 0;
+    }
+    30% {
+        top: 12.5px; /* Hits middle and goes full neon */
+        height: 15px;
+        opacity: 1;
+    }
+    60% {
+        top: 12.5px; /* Stays centered and 'pumps' or brightens */
+        height: 18px; /* Slightly expands for emphasis */
+        opacity: 1;
+    }
+    90% {
+        top: 40px; /* Heads off the bottom and fades out */
+        height: 10px;
+        opacity: 0;
+    }
+    100% {
+        top: 40px;
+        opacity: 0;
+    }
+}
+    </style>
+</head>
+<body>
+
+    <div class="hero-bg">
+    <h1 class="name-script">Gusto</h1>
+    
+    <div class="project-specs">
+        <div class="spec-col">
+            <p class="label"><b>Project</b></p>
+            <p class="value" style="color: #ffffff;font-family:sans-serif;">Branding</p>
+        </div>
+
+        <div class="spec-col">
+            <p class="label"><b>Tools</b></p>
+            <p class="value" style="color: #ffffff;font-family:sans-serif;">Adobe Illustrator, Abobe Photoshop</p>
+        </div>
+
+        <div class="spec-col">
+            <p class="label"><b>Timeframe</b></p>
+            <p class="value" style="color: #ffffff;font-family:sans-serif;">2 Weeks</p>
+        </div>
+    </div>
+
+    <div class="scroll-indicator">
+        <div class="scroll-bar">
+            <span class="highlight"></span>
+        </div>
+        <p class="scroll-text">SCROLL</p>
+    </div>
+</div>
+
+    <main class="gallery-curtain">
+        <div class="gallery-wrapper">
+            
+            <div class="image-grid">
+                <img src="Portfolio/1.png" loading="lazy">
+                <img src="Portfolio/2.png" loading="lazy">
+                <img src="Portfolio/3.png" loading="lazy">
+                <img src="Portfolio/4.png" loading="lazy">
+                <img src="Portfolio/5.png" loading="lazy">
+                <img src="Portfolio/6.png" loading="lazy">
+                <img src="Portfolio/7.png" loading="lazy">
+                <img src="Portfolio/8.png" loading="lazy">
+                <img src="Portfolio/9.png" loading="lazy">
+                <img src="Portfolio/10.png" loading="lazy">
+                <img src="Portfolio/11.png" loading="lazy">
+                <img src="Portfolio/12.png" loading="lazy">
+                <img src="Portfolio/13.png" loading="lazy">
+                <img src="Portfolio/14.png" loading="lazy">
+                <img src="Portfolio/15.png" loading="lazy">
+                <img src="Portfolio/16.png" loading="lazy">
+                <img src="Portfolio/17.png" loading="lazy">
+                <img src="Portfolio/18.png" loading="lazy">
+                <img src="Portfolio/19.png" loading="lazy">
+                <img src="Portfolio/20.png" loading="lazy">
+                <img src="Portfolio/21.png" loading="lazy">
+                <img src="Portfolio/122.png" loading="lazy">
+            </div>
+
+            <div class="back-nav">
+                <a href="index.html">← Return to Home</a>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>

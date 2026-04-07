@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shashank Sekhar VS | Resume</title>
+    <style>
+        /* Manually set this to your exact home page background color */
+        :root {
+            --home-bg: #121212; /* Common dark theme bg - change this to match your index.html */
+            --card-bg: #ffffff;
+            --accent: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Times New Roman", Times, serif;
+        }
+
+        body {
+            background-color: var(--home-bg); /* Matches the home page background */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 60px 20px;
+            min-height: 100vh;
+        }
+
+        .resume-wrapper {
+            width: 100%;
+            max-width: 850px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--accent);
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 5px;
+        }
+
+        /* The Resume Image */
+        .resume-img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            margin-bottom: 40px;
+            display: block;
+        }
+
+        /* Justified Text Description (if needed below image) */
+        .description {
+            color: var(--accent);
+            text-align: justify;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            opacity: 0.8;
+        }
+
+        /* The Download Button */
+        .download-link {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--home-bg);
+            padding: 18px 45px;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 2px solid var(--accent);
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            border-radius: 15px;
+        }
+
+        .download-link:hover {
+            background-color: transparent;
+            color: var(--accent);
+            cursor: pointer;
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.8rem; }
+            .download-link { width: 100%; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="resume-wrapper">
+        <header>
+            <h1>Resume</h1>
+        </header>
+
+        <img 
+            src="Resume-1.png" 
+            alt="Shashank Sekhar VS Resume" 
+            class="resume-img"
+        >
+
+        <a href="Resume-1.png" download="Shashank_Sekhar_Resume.png" class="download-link">
+            Download Resume
+        </a>
+    </div>
+
+</body>
+</html>
