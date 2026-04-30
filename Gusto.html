@@ -1,298 +1,417 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gusto | Gallery</title>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
-    <style>
-        :root { --bg: #0d0d0d; --accent: #8a2be2; }
-        body { background: var(--bg); margin: 0; padding: 0; overflow-x: hidden; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gusto — Branding · Shashank Sekhar</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --cream: #F5F0E8;
+    --off-white: #FAF8F4;
+    --dark: #1A1714;
+    --dark-2: #2E2A26;
+    --accent: #C4703A;
+    --accent-light: #E8A87C;
+    --muted: #7A7068;
+    --line: rgba(26,23,20,0.12);
+    --font-serif: 'Cormorant Garamond', Georgia, serif;
+    --font-sans: 'DM Sans', system-ui, sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-sans); background: var(--off-white); color: var(--dark); overflow-x: hidden; }
 
-        /* STICKY BACKGROUND TITLE */
-        .hero-bg {
-    position: fixed;
-    top: 50%; /* Centered vertically */
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
-    width: 100%;
-    
-    /* Use Flexbox to stack everything vertically with zero overlap */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 4rem;
+  }
+  nav::before {
+    content: ''; position: absolute; inset: 0;
+    background: rgba(250,248,244,0.88); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-logo { font-family: var(--font-serif); font-size: 1.25rem; font-weight: 400; color: var(--dark); text-decoration: none; position: relative; }
+  .nav-back { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; color: var(--muted); text-decoration: none; position: relative; transition: color 0.3s; }
+  .nav-back:hover { color: var(--accent); }
+
+  /* HERO — full bleed cream */
+  .hero {
+    min-height: 60vh;
+    background: var(--cream);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-}
-        .hero-bg h1 {
-            font-family: 'Great Vibes', cursive;
-            font-size: clamp(5rem, 15vw, 12rem);
-            margin: 0;
-            background: linear-gradient(to bottom, #fff, #222);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            opacity: 0.5;
-        }
+    text-align: center;
+    padding: 10rem 4rem 6rem;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--line);
+  }
 
-        .project-specs {
-            display: flex;
-            justify-content: center;
-            gap: 80px;
-            margin-top: 20px; /* Precise gap below the 'Gusto' script */
-            margin-bottom: 60px; /* Precise gap above the scroll indicator */
-        }
-        .spec-col {
+  .hero-bg-text {
+    position: absolute;
+    font-family: var(--font-serif);
+    font-size: 22vw;
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(26,23,20,0.04);
+    pointer-events: none;
+    white-space: nowrap;
+    user-select: none;
+  }
+
+  .hero-inner { position: relative; }
+
+  .hero-tag {
+    font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--accent); font-weight: 500; margin-bottom: 1.5rem;
+    display: flex; align-items: center; justify-content: center; gap: 0.75rem;
+  }
+  .hero-tag::before, .hero-tag::after { content: ''; display: block; width: 2rem; height: 1px; background: var(--accent); }
+
+  .hero-title {
+    font-family: var(--font-serif);
+    font-size: clamp(5rem, 12vw, 10rem);
+    font-weight: 300;
+    line-height: 0.9;
+    color: var(--dark);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--muted);
+    font-weight: 300;
+    max-width: 50ch;
+    margin: 0 auto 3rem;
+  }
+
+  .hero-meta {
     display: flex;
-    flex-direction: column; /* This puts the value below the label */
-    align-items: center;    /* Keeps everything centered */
-    gap: 8px;               /* Space between label and value */
-}
+    gap: 4rem;
+    justify-content: center;
+    border-top: 1px solid var(--line);
+    padding-top: 2.5rem;
+    margin-top: 1rem;
+  }
 
-.label {
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 4px;
-    color: #636161;            /* The dimmed title color */
-    margin: 0;
-}
+  .meta-item { text-align: center; }
+  .meta-label { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); font-weight: 500; margin-bottom: 0.3rem; }
+  .meta-value { font-family: var(--font-serif); font-size: 1.1rem; font-weight: 400; color: var(--dark); }
 
-.value {
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: #ffffff;            /* The bright white content color */
-    font-weight: 700;
-    margin: 0;
-}
+  /* INTRO SECTION */
+  .intro-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: 1px solid var(--line);
+  }
 
-/* Mobile: Stack the columns vertically so they don't overlap */
-@media (max-width: 768px) {
-    .project-specs {
-        flex-direction: column;
-        gap: 30px;
-    }
-}
-
-.project-specs p {
-    font-size: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: #444; /* Dim label */
-    margin: 0;
-}
-
-.project-specs span {
-    color: #fff; /* Bright value */
-    font-weight: 700;
-    margin-left: 8px;
-}
-        /* THE IMAGE CURTAIN */
-        .gallery-curtain {
-            position: relative;
-            z-index: 10;
-            background: var(--bg);
-            margin-top: 100vh;
-            padding: 0 0 10vh 0; /* Removed side padding for a more immersive feel */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            box-shadow: 0 -100px 150px rgba(0,0,0,1);
-        }
-
-        .gallery-wrapper {
-            width: 100%;
-            max-width: 1200px; /* Limits the width so it doesn't get too tall on huge monitors */
-            display: flex;
-            flex-direction: column;
-            gap: 40px; /* Space between each of the 23 images */
-            padding: 50px 20px;
-        }
-
-        img {
-            width: 100%;
-            height: auto;
-            display: block;
-            border-radius: 4px;
-            /* Added a subtle glow to separate images from the pure black BG */
-            box-shadow: 0 20px 80px rgba(0,0,0,0.6); 
-        }
-
-        /* NAVIGATION AT THE END */
-        .back-nav {
-            margin: 100px 0;
-            text-align: center;
-        }
-        .back-nav a {
-            color: #555;
-            text-decoration: none;
-            letter-spacing: 5px;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            border-bottom: 1px solid transparent;
-            transition: 0.4s;
-            padding-bottom: 5px;
-        }
-        .back-nav a:hover { 
-            color: var(--accent); 
-            border-color: var(--accent);
-            letter-spacing: 7px;
-        }
-
-        /* Responsive tweak for smaller screens */
-        @media (max-width: 768px) {
-            .gallery-wrapper { gap: 20px; padding: 20px 10px; }
-            .hero-bg h1 { font-size: 8rem; }
-        }
-        .scroll-indicator {
-    margin: 0; /* Let the parent flexbox handle the spacing */
+  .intro-left {
+    padding: 6rem 4rem;
+    background: var(--dark);
     display: flex;
     flex-direction: column;
-    align-items: center;
-}
+    justify-content: center;
+  }
 
-/* Responsive: Stack specs on mobile so they don't crush together */
-@media (max-width: 600px) {
-    .project-specs {
-        flex-direction: column;
-        gap: 10px;
-        text-align: center;
-    }
-}
+  .intro-label {
+    font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--accent-light); font-weight: 500; margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .intro-label::before { content: ''; display: block; width: 2rem; height: 1px; background: var(--accent-light); }
 
-/* The vertical grey bar */
-.scroll-bar {
-    width: 3px;
-    height: 40px;
-    background-color: #333; /* Dark grey base */
-    position: relative;
-    border-radius: 1px;
+  .intro-heading {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--off-white);
+    margin-bottom: 1.5rem;
+  }
+  .intro-heading em { font-style: italic; color: var(--accent-light); }
+
+  .intro-body { font-size: 0.92rem; line-height: 1.8; color: rgba(250,248,244,0.55); font-weight: 300; max-width: 40ch; }
+
+  .intro-right {
+    padding: 6rem 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2.5rem;
+  }
+
+  .detail-item { border-bottom: 1px solid var(--line); padding-bottom: 2rem; }
+  .detail-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .detail-label { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); font-weight: 500; margin-bottom: 0.4rem; }
+  .detail-value { font-family: var(--font-serif); font-size: 1.3rem; font-weight: 300; color: var(--dark); }
+
+  /* GALLERY */
+  .gallery-header {
+    padding: 5rem 4rem 2rem;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .gallery-label {
+    font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--accent); font-weight: 500;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .gallery-label::before { content: ''; display: block; width: 2rem; height: 1px; background: var(--accent); }
+
+  .gallery-count { font-family: var(--font-serif); font-size: 1.2rem; font-weight: 300; color: var(--muted); }
+
+  /* MASONRY-STYLE GRID */
+  .gallery-grid {
+    padding: 3rem 4rem 6rem;
+    columns: 2;
+    column-gap: 1.5rem;
+  }
+
+  .gallery-item {
+    break-inside: avoid;
+    margin-bottom: 1.5rem;
     overflow: hidden;
-}
+    position: relative;
+    background: var(--cream);
+    cursor: zoom-in;
+  }
 
-/* The green highlight that animates */
-.scroll-bar .highlight {
-    position: absolute;
+  .gallery-item img {
     width: 100%;
-    height: 15px; /* Size of the active highlight */
-    background-color: #ccff00; /* Neon yellow/green from your reference */
-    top: -15px; /* Starts hidden above the bar */
-    left: 0;
-    
-    /* Connect the animation name defined below */
-    animation: scrollSlide 2.5s cubic-bezier(0.77, 0, 0.175, 1) infinite;
-}
-
-/* The 'SCROLL' text below the bar */
-.scroll-text {
-    font-size: 0.75rem;
-    color: #fff;
-    letter-spacing: 3px;
-    margin: 0;
-}
-.name-script {
-    font-family: 'Great Vibes', cursive;
-    font-size: clamp(5rem, 15vw, 12rem);
-    line-height: 1.5;
-    padding: 0.2em 0.5em;
-    margin: 0; /* Remove default margins that cause weird spacing */
-    background: linear-gradient(to bottom, #fff, #222);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    opacity: 0.5;
     display: block;
-}
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
 
-/* --- THE PULSING/SLIDING ANIMATION KEYFRAMES --- */
-@keyframes scrollSlide {
-    0% {
-        top: -15px; /* Hidden top */
-        opacity: 0;
-    }
-    30% {
-        top: 12.5px; /* Hits middle and goes full neon */
-        height: 15px;
-        opacity: 1;
-    }
-    60% {
-        top: 12.5px; /* Stays centered and 'pumps' or brightens */
-        height: 18px; /* Slightly expands for emphasis */
-        opacity: 1;
-    }
-    90% {
-        top: 40px; /* Heads off the bottom and fades out */
-        height: 10px;
-        opacity: 0;
-    }
-    100% {
-        top: 40px;
-        opacity: 0;
-    }
-}
-    </style>
+  .gallery-item:hover img { transform: scale(1.03); }
+
+  .gallery-item-num {
+    position: absolute;
+    bottom: 0.75rem;
+    left: 0.75rem;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: rgba(255,255,255,0.7);
+    background: rgba(26,23,20,0.5);
+    padding: 0.2rem 0.5rem;
+    backdrop-filter: blur(4px);
+  }
+
+  /* LIGHTBOX */
+  .lightbox {
+    position: fixed; inset: 0; background: rgba(26,23,20,0.95);
+    z-index: 1000; display: none; align-items: center; justify-content: center;
+    padding: 2rem;
+  }
+  .lightbox.active { display: flex; }
+  .lightbox-img { max-width: 90vw; max-height: 90vh; object-fit: contain; }
+  .lightbox-close {
+    position: fixed; top: 2rem; right: 2rem;
+    font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(250,248,244,0.6); cursor: pointer; font-weight: 500;
+    font-family: var(--font-sans); transition: color 0.3s;
+    background: none; border: none;
+  }
+  .lightbox-close:hover { color: var(--accent-light); }
+  .lightbox-nav {
+    position: fixed; top: 50%; transform: translateY(-50%);
+    font-size: 1.2rem; color: rgba(250,248,244,0.5); cursor: pointer;
+    background: none; border: none; font-family: var(--font-sans);
+    transition: color 0.3s; padding: 1rem;
+  }
+  .lightbox-nav:hover { color: var(--accent-light); }
+  .lightbox-prev { left: 2rem; }
+  .lightbox-next { right: 2rem; }
+  .lightbox-counter {
+    position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%);
+    font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(250,248,244,0.4); font-weight: 500; font-family: var(--font-sans);
+  }
+
+  /* FOOTER */
+  .case-footer {
+    padding: 4rem; background: var(--dark);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .case-footer-name { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 300; font-style: italic; color: var(--off-white); }
+  .case-footer-meta { font-size: 0.75rem; letter-spacing: 0.1em; color: rgba(250,248,244,0.4); text-transform: uppercase; }
+  .back-btn {
+    display: inline-flex; align-items: center; gap: 0.75rem;
+    font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500;
+    color: var(--off-white); text-decoration: none; border: 1px solid rgba(250,248,244,0.25);
+    padding: 0.75rem 1.5rem; transition: all 0.3s;
+  }
+  .back-btn:hover { background: var(--accent); border-color: var(--accent); }
+
+  .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .fade-up.visible { opacity: 1; transform: none; }
+
+  @media (max-width: 900px) {
+    nav { padding: 1.5rem 2rem; }
+    .hero { padding: 8rem 2rem 4rem; }
+    .hero-meta { gap: 2rem; }
+    .intro-section { grid-template-columns: 1fr; }
+    .intro-left, .intro-right { padding: 4rem 2rem; }
+    .gallery-header { padding: 3rem 2rem 1.5rem; }
+    .gallery-grid { padding: 2rem 2rem 4rem; columns: 1; }
+    .case-footer { padding: 2rem; flex-direction: column; gap: 1.5rem; text-align: center; }
+  }
+</style>
 </head>
 <body>
 
-    <div class="hero-bg">
-    <h1 class="name-script">Gusto</h1>
-    
-    <div class="project-specs">
-        <div class="spec-col">
-            <p class="label"><b>Project</b></p>
-            <p class="value" style="color: #ffffff;font-family:sans-serif;">Branding</p>
-        </div>
+<nav>
+  <a href="index.html" class="nav-logo">SS</a>
+  <a href="index.html" class="nav-back">← Back to Portfolio</a>
+</nav>
 
-        <div class="spec-col">
-            <p class="label"><b>Tools</b></p>
-            <p class="value" style="color: #ffffff;font-family:sans-serif;">Adobe Illustrator, Abobe Photoshop</p>
-        </div>
-
-        <div class="spec-col">
-            <p class="label"><b>Timeframe</b></p>
-            <p class="value" style="color: #ffffff;font-family:sans-serif;">2 Weeks</p>
-        </div>
-    </div>
-
-    <div class="scroll-indicator">
-        <div class="scroll-bar">
-            <span class="highlight"></span>
-        </div>
-        <p class="scroll-text">SCROLL</p>
-    </div>
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <button class="lightbox-close" onclick="closeLightbox()">Close ✕</button>
+  <button class="lightbox-nav lightbox-prev" onclick="navigateLightbox(-1); event.stopPropagation();">←</button>
+  <img class="lightbox-img" id="lightboxImg" src="" alt="">
+  <button class="lightbox-nav lightbox-next" onclick="navigateLightbox(1); event.stopPropagation();">→</button>
+  <div class="lightbox-counter" id="lightboxCounter"></div>
 </div>
 
-    <main class="gallery-curtain">
-        <div class="gallery-wrapper">
-            
-            <div class="image-grid">
-                <img src="Portfolio/1.png" loading="lazy">
-                <img src="Portfolio/2.png" loading="lazy">
-                <img src="Portfolio/3.png" loading="lazy">
-                <img src="Portfolio/4.png" loading="lazy">
-                <img src="Portfolio/5.png" loading="lazy">
-                <img src="Portfolio/6.png" loading="lazy">
-                <img src="Portfolio/7.png" loading="lazy">
-                <img src="Portfolio/8.png" loading="lazy">
-                <img src="Portfolio/9.png" loading="lazy">
-                <img src="Portfolio/10.png" loading="lazy">
-                <img src="Portfolio/11.png" loading="lazy">
-                <img src="Portfolio/12.png" loading="lazy">
-                <img src="Portfolio/13.png" loading="lazy">
-                <img src="Portfolio/14.png" loading="lazy">
-                <img src="Portfolio/15.png" loading="lazy">
-                <img src="Portfolio/16.png" loading="lazy">
-                <img src="Portfolio/17.png" loading="lazy">
-                <img src="Portfolio/18.png" loading="lazy">
-                <img src="Portfolio/19.png" loading="lazy">
-                <img src="Portfolio/20.png" loading="lazy">
-                <img src="Portfolio/21.png" loading="lazy">
-                <img src="Portfolio/122.png" loading="lazy">
-            </div>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-text">Gusto</div>
+  <div class="hero-inner fade-up">
+    <p class="hero-tag">Branding · 2025</p>
+    <h1 class="hero-title">Gusto</h1>
+    <p class="hero-subtitle">An Italian-inspired pastry shop brand — crafted to evoke warmth, tradition, and the quiet pleasure of something beautifully made.</p>
+    <div class="hero-meta">
+      <div class="meta-item">
+        <div class="meta-label">Category</div>
+        <div class="meta-value">Branding</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Tools</div>
+        <div class="meta-value">Adobe Illustrator & Photoshop</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Duration</div>
+        <div class="meta-value">2 Weeks</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-            <div class="back-nav">
-                <a href="index.html">← Return to Home</a>
-            </div>
-        </div>
-    </main>
+<!-- INTRO -->
+<section class="intro-section">
+  <div class="intro-left fade-up">
+    <p class="intro-label">The Brief</p>
+    <h2 class="intro-heading">A brand that tastes like <em>Italy</em></h2>
+    <p class="intro-body">Gusto is an Italian pastry shop brand built around the idea that great food deserves great design. The visual identity needed to feel handcrafted, warm, and deeply rooted in Italian culinary tradition — while being modern enough to work across packaging, signage, and digital touchpoints.</p>
+    <p class="intro-body" style="margin-top: 1.25rem;">Every element — from the logotype to the color palette to the pattern work — was designed to evoke the atmosphere of a small Italian bakery: terracotta walls, morning espresso, and pastries dusted in powdered sugar.</p>
+  </div>
+  <div class="intro-right fade-up">
+    <div class="detail-item">
+      <div class="detail-label">Deliverables</div>
+      <div class="detail-value">Logo, Color System, Typography, Packaging, Brand Guidelines</div>
+    </div>
+    <div class="detail-item">
+      <div class="detail-label">Visual Direction</div>
+      <div class="detail-value">Warm, artisanal, Italian heritage</div>
+    </div>
+    <div class="detail-item">
+      <div class="detail-label">Tools</div>
+      <div class="detail-value">Adobe Illustrator · Adobe Photoshop</div>
+    </div>
+    <div class="detail-item">
+      <div class="detail-label">Timeframe</div>
+      <div class="detail-value">2 Weeks</div>
+    </div>
+  </div>
+</section>
 
+<!-- GALLERY HEADER -->
+<div class="gallery-header fade-up">
+  <p class="gallery-label">Brand Gallery</p>
+  <span class="gallery-count">22 pieces</span>
+</div>
+
+<!-- GALLERY GRID -->
+<div class="gallery-grid" id="galleryGrid">
+</div>
+
+<!-- FOOTER -->
+<footer class="case-footer">
+  <div>
+    <div class="case-footer-name">Gusto</div>
+    <div class="case-footer-meta">A branding project · 2025 · Shashank Sekhar</div>
+  </div>
+  <a href="index.html" class="back-btn">← Back to Portfolio</a>
+</footer>
+
+<script>
+  const baseUrl = 'https://hank0811.github.io/Portfolio/Portfolio/';
+  const imageNames = ['1.png','2.png','3.png','4.png','5.png','6.png','7.png','8.png','9.png','10.png','11.png','12.png','13.png','14.png','15.png','16.png','17.png','18.png','19.png','20.png','21.png','122.png'];
+  const images = imageNames.map(n => baseUrl + n);
+
+  let currentIndex = 0;
+
+  function buildGallery() {
+    const grid = document.getElementById('galleryGrid');
+    images.forEach((src, i) => {
+      const item = document.createElement('div');
+      item.className = 'gallery-item fade-up';
+      item.innerHTML = `
+        <img src="${src}" alt="Gusto branding ${i+1}" loading="lazy" onerror="this.parentElement.style.display='none'">
+        <span class="gallery-item-num">${String(i+1).padStart(2,'0')}</span>
+      `;
+      item.addEventListener('click', () => openLightbox(i));
+      grid.appendChild(item);
+    });
+  }
+
+  function openLightbox(index) {
+    currentIndex = index;
+    document.getElementById('lightbox').classList.add('active');
+    updateLightbox();
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox(e) {
+    if (!e || e.target === document.getElementById('lightbox') || e.currentTarget === document.querySelector('.lightbox-close')) {
+      document.getElementById('lightbox').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  }
+
+  function navigateLightbox(dir) {
+    currentIndex = (currentIndex + dir + images.length) % images.length;
+    updateLightbox();
+  }
+
+  function updateLightbox() {
+    document.getElementById('lightboxImg').src = images[currentIndex];
+    document.getElementById('lightboxCounter').textContent = `${currentIndex + 1} / ${images.length}`;
+  }
+
+  document.addEventListener('keydown', e => {
+    if (document.getElementById('lightbox').classList.contains('active')) {
+      if (e.key === 'ArrowRight') navigateLightbox(1);
+      if (e.key === 'ArrowLeft') navigateLightbox(-1);
+      if (e.key === 'Escape') closeLightbox({});
+    }
+  });
+
+  buildGallery();
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
