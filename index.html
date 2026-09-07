@@ -31,9 +31,10 @@ function techIconFallback(img) {
 <header class="site-header">
   <a href="#top" class="mark">SS<span class="mark-dot">·</span></a>
   <nav class="nav">
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
     <a href="#work">Work</a>
     <a href="#tech">Tech</a>
-    <a href="#experience">Experience</a>
     <a href="#education">Education</a>
     <a href="#contact">Contact</a>
   </nav>
@@ -45,9 +46,10 @@ function techIconFallback(img) {
 
 <div class="mobile-nav">
   <nav>
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
     <a href="#work">Work</a>
     <a href="#tech">Tech</a>
-    <a href="#experience">Experience</a>
     <a href="#education">Education</a>
     <a href="#contact">Contact</a>
   </nav>
@@ -79,56 +81,15 @@ function techIconFallback(img) {
       <a href="#contact" class="btn btn-ghost">Get in touch →</a>
     </div>
     <div class="hero-figure" aria-hidden="true">
-      <svg class="neural-viz" viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg">
-        <circle class="ring" cx="160" cy="160" r="150"/>
-        <circle class="ring ring-dashed" cx="160" cy="160" r="130"/>
-        <g class="diagram-group">
-          <!-- edges: input -> hidden -->
-          <g class="edge">
-            <line x1="40" y1="60" x2="160" y2="40"/>
-            <line x1="40" y1="60" x2="160" y2="120"/>
-            <line x1="40" y1="60" x2="160" y2="200"/>
-            <line x1="40" y1="60" x2="160" y2="280"/>
-            <line x1="40" y1="160" x2="160" y2="40"/>
-            <line x1="40" y1="160" x2="160" y2="120"/>
-            <line x1="40" y1="160" x2="160" y2="200"/>
-            <line x1="40" y1="160" x2="160" y2="280"/>
-            <line x1="40" y1="260" x2="160" y2="40"/>
-            <line x1="40" y1="260" x2="160" y2="120"/>
-            <line x1="40" y1="260" x2="160" y2="200"/>
-            <line x1="40" y1="260" x2="160" y2="280"/>
-          </g>
-          <!-- edges: hidden -> output -->
-          <g class="edge">
-            <line x1="160" y1="40" x2="280" y2="100"/>
-            <line x1="160" y1="120" x2="280" y2="100"/>
-            <line x1="160" y1="200" x2="280" y2="100"/>
-            <line x1="160" y1="280" x2="280" y2="100"/>
-            <line x1="160" y1="40" x2="280" y2="220"/>
-            <line x1="160" y1="120" x2="280" y2="220"/>
-            <line x1="160" y1="200" x2="280" y2="220"/>
-            <line x1="160" y1="280" x2="280" y2="220"/>
-          </g>
-          <!-- active signal paths -->
-          <path class="edge-active" d="M40,60 L160,40 L280,100" style="animation-delay:0s"/>
-          <path class="edge-active" d="M40,160 L160,120 L280,100" style="animation-delay:0.6s"/>
-          <path class="edge-active" d="M40,260 L160,200 L280,220" style="animation-delay:1.2s"/>
-          <path class="edge-active" d="M40,160 L160,280 L280,220" style="animation-delay:1.8s"/>
-
-          <!-- input nodes -->
-          <circle class="node" cx="40" cy="60" r="6" style="animation-delay:0s"/>
-          <circle class="node" cx="40" cy="160" r="6" style="animation-delay:0.4s"/>
-          <circle class="node" cx="40" cy="260" r="6" style="animation-delay:0.8s"/>
-          <!-- hidden nodes -->
-          <circle class="node" cx="160" cy="40" r="6" style="animation-delay:0.2s"/>
-          <circle class="node" cx="160" cy="120" r="6" style="animation-delay:0.6s"/>
-          <circle class="node" cx="160" cy="200" r="6" style="animation-delay:1s"/>
-          <circle class="node" cx="160" cy="280" r="6" style="animation-delay:1.4s"/>
-          <!-- output nodes -->
-          <circle class="node node-out" cx="280" cy="100" r="8" style="animation-delay:0.3s"/>
-          <circle class="node node-out" cx="280" cy="220" r="8" style="animation-delay:0.9s"/>
-        </g>
-      </svg>
+      <div class="term-window">
+        <div class="term-bar">
+          <span class="term-dot term-dot-red"></span>
+          <span class="term-dot term-dot-amber"></span>
+          <span class="term-dot term-dot-green"></span>
+          <span class="term-title" id="termTitle">engineer.js</span>
+        </div>
+        <pre class="term-body"><code id="termCode"></code><span class="term-cursor"></span></pre>
+      </div>
     </div>
   </section>
 
@@ -139,32 +100,72 @@ function techIconFallback(img) {
     </div>
     <div class="about-text" data-reveal>
       <p class="section-label">01 — About</p>
-      <p class="about-lede">
-        Computer Science graduate working across three disciplines that are usually kept
-        apart: applied AI, production web engineering, and UX research. Currently freelancing
-        as a web developer while leading both the technical and design tracks of my college's
-        department club.
-      </p>
-      <p class="about-body">
-        My work leans toward systems that don't just predict but act, combining forecasting
-        models with reinforcement-learning agents that make operational decisions. My web work
-        favours Next.js and Supabase, built for real tenants and real traffic, not demos. My
-        design work starts from primary research: surveys, interviews, and usability testing,
-        before a single screen gets drawn.
-      </p>
-      <p class="about-body">
-        But more than any one discipline, what I love is building: taking a rough idea and
-        pushing it all the way to something real that people can open, click through, and
-        actually use. That moment when a feature finally works exactly as imagined never gets
-        old, and it's the reason I keep choosing projects that ship rather than projects that
-        stay theoretical.
-      </p>
+
+      <div class="about-block">
+        <h3 class="about-block-title">The Roots</h3>
+        <p class="about-lede">
+          Computer Science graduate working across three disciplines that are usually kept
+          apart: applied AI, production web engineering, and UX research. Currently freelancing
+          as a web developer while leading both the technical and design tracks of my college's
+          department club.
+        </p>
+      </div>
+
+      <div class="about-block">
+        <h3 class="about-block-title">The Approach</h3>
+        <p class="about-body">
+          My work leans toward systems that don't just predict but act, combining forecasting
+          models with reinforcement-learning agents that make operational decisions. My web work
+          favours Next.js and Supabase, built for real tenants and real traffic, not demos. My
+          design work starts from primary research: surveys, interviews, and usability testing,
+          before a single screen gets drawn.
+        </p>
+      </div>
+
+      <div class="about-block">
+        <h3 class="about-block-title">The Promise</h3>
+        <p class="about-body">
+          But more than any one discipline, what I love is building: taking a rough idea and
+          pushing it all the way to something real that people can open, click through, and
+          actually use. That moment when a feature finally works exactly as imagined never gets
+          old, and it's the reason I keep choosing projects that ship rather than projects that
+          stay theoretical.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="split split-solo" id="experience">
+    <div class="split-col">
+      <p class="section-label">02 — Experience</p>
+      <h2 class="section-title" data-reveal>Where I've worked</h2>
+
+      <ol class="timeline">
+        <li data-reveal>
+          <span class="tl-date">Jan 2026 — May 2026</span>
+          <h4>Freelance Web Developer</h4>
+          <p>Built a full-scale webpage end-to-end and handled its SEO.</p>
+        </li>
+        <li data-reveal>
+          <span class="tl-date">Jan 2025 — Dec 2026</span>
+          <h4>Technical Lead — College Department Club</h4>
+          <p>Led the technical team across club projects: code quality, system design, and
+          mentoring junior developers in frontend and best practices.</p>
+        </li>
+        <li data-reveal>
+          <span class="tl-date">Jan 2025 — Dec 2026</span>
+          <h4>Design Lead — College Department Club</h4>
+          <p>Led the design team's UI/UX initiatives, mentored junior designers in design
+          thinking and prototyping, and ran workshops on user-centered problem solving.</p>
+        </li>
+      </ol>
     </div>
   </section>
 
   <!-- WORK -->
   <section class="work" id="work">
-    <p class="section-label">02 — Selected Work</p>
+    <p class="section-label">03 — Selected Work</p>
     <h2 class="section-title" data-reveal>Things I've shipped</h2>
 
     <div class="tabs" role="tablist" data-reveal>
@@ -316,7 +317,7 @@ function techIconFallback(img) {
 
   <!-- KNOWN TECHNOLOGIES -->
   <section class="tech" id="tech">
-    <p class="section-label">03 — Known Technologies</p>
+    <p class="section-label">04 — Known Technologies</p>
     <h2 class="section-title" data-reveal>What I build with</h2>
     <p class="tech-sub" data-reveal>The stack I reach for across AI systems, production web platforms, and interface design.</p>
 
@@ -328,6 +329,7 @@ function techIconFallback(img) {
           <div class="tech-item" style="--tint:#4B8BBE"><span class="tech-icon"><img src="https://cdn.simpleicons.org/python/4B8BBE" alt="Python" loading="lazy" onerror="techIconFallback(this)"></span><span class="tech-name">Python</span></div>
           <div class="tech-item" style="--tint:#00599C"><span class="tech-icon"><img src="https://cdn.simpleicons.org/cplusplus/00599C" alt="C++" loading="lazy" onerror="techIconFallback(this)"></span><span class="tech-name">C++</span></div>
           <div class="tech-item" style="--tint:#A8B9CC"><span class="tech-icon"><img src="https://cdn.simpleicons.org/c/A8B9CC" alt="C" loading="lazy" onerror="techIconFallback(this)"></span><span class="tech-name">C</span></div>
+          <div class="tech-item" style="--tint:#0175C2"><span class="tech-icon"><img src="https://cdn.simpleicons.org/dart/0175C2" alt="Dart" loading="lazy" onerror="techIconFallback(this)"></span><span class="tech-name">Dart</span></div>
         </div>
       </div>
 
@@ -340,6 +342,7 @@ function techIconFallback(img) {
           <div class="tech-item" style="--tint:#38BDF8"><span class="tech-icon"><img src="https://cdn.simpleicons.org/tailwindcss/38BDF8" alt="Tailwind CSS" loading="lazy" onerror="techIconFallback(this)"></span><span class="tech-name">Tailwind</span></div>
           <div class="tech-item" style="--tint:#A1A1AA"><span class="tech-icon"><img src="https://cdn.simpleicons.org/nextdotjs/FFFFFF" alt="Next.js" loading="lazy" onerror="techIconFallback(this)"></span><span class="tech-name">Next.js</span></div>
           <div class="tech-item" style="--tint:#61DAFB"><span class="tech-icon"><img src="https://cdn.simpleicons.org/react/61DAFB" alt="React" loading="lazy" onerror="techIconFallback(this)"></span><span class="tech-name">React</span></div>
+          <div class="tech-item" style="--tint:#02569B"><span class="tech-icon"><img src="https://cdn.simpleicons.org/flutter/02569B" alt="Flutter" loading="lazy" onerror="techIconFallback(this)"></span><span class="tech-name">Flutter</span></div>
         </div>
       </div>
 
@@ -388,34 +391,9 @@ function techIconFallback(img) {
     </div>
   </section>
 
-  <!-- EXPERIENCE + EDUCATION -->
-  <section class="split" id="experience">
+  <!-- EDUCATION -->
+  <section class="split split-solo" id="education">
     <div class="split-col">
-      <p class="section-label">04 — Experience</p>
-      <h2 class="section-title" data-reveal>Where I've worked</h2>
-
-      <ol class="timeline">
-        <li data-reveal>
-          <span class="tl-date">Jan 2026 — May 2026</span>
-          <h4>Freelance Web Developer</h4>
-          <p>Built a full-scale webpage end-to-end and handled its SEO.</p>
-        </li>
-        <li data-reveal>
-          <span class="tl-date">Jan 2025 — Dec 2026</span>
-          <h4>Technical Lead — College Department Club</h4>
-          <p>Led the technical team across club projects: code quality, system design, and
-          mentoring junior developers in frontend and best practices.</p>
-        </li>
-        <li data-reveal>
-          <span class="tl-date">Jan 2025 — Dec 2026</span>
-          <h4>Design Lead — College Department Club</h4>
-          <p>Led the design team's UI/UX initiatives, mentored junior designers in design
-          thinking and prototyping, and ran workshops on user-centered problem solving.</p>
-        </li>
-      </ol>
-    </div>
-
-    <div class="split-col" id="education">
       <p class="section-label">05 — Education</p>
       <h2 class="section-title" data-reveal>Where I've studied</h2>
 
@@ -436,22 +414,6 @@ function techIconFallback(img) {
           <p>Petit Seminaire Higher Secondary School</p>
         </li>
       </ol>
-
-      <p class="section-label skills-label">Skills</p>
-      <div class="skill-groups" data-reveal>
-        <div class="skill-group">
-          <span class="skill-cat">Web</span>
-          <div class="tags"><span>HTML</span><span>Tailwind</span><span>JavaScript</span><span>Next.js</span></div>
-        </div>
-        <div class="skill-group">
-          <span class="skill-cat">AI / ML</span>
-          <div class="tags"><span>Python</span><span>RAG</span><span>LangChain</span></div>
-        </div>
-        <div class="skill-group">
-          <span class="skill-cat">Core</span>
-          <div class="tags"><span>Java</span><span>SQL</span></div>
-        </div>
-      </div>
     </div>
   </section>
 
